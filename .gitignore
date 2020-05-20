@@ -4,5 +4,6 @@
 *.obj
 *.tlog
 *.idb
+*.exe
 
 .vs\
