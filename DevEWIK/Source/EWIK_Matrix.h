@@ -1,19 +1,18 @@
 #pragma once
 
-
-typedef struct tCell* pCell;
-typedef struct tCell
+typedef struct Node* pNode;
+typedef struct tNode
 {
-	int row;
-	int col;
+	int row, col;
 	double value;
-	pCell next_row;
-	pCell next_col;
-}Cell;
+	pNode next_row, next_col;
+}Node;
 
-typedef struct tMatrix
+typedef struct tSparseMatrix
 {
-	int number_of_row;
-	int number_of_col;
-	pCell headCell;
-}Matrix;
+	int num_of_row, num_of_col;
+	pNode head;
+}SparseMatrix;
+
+
+extern SparseMatrix CreateMatrix(void);
