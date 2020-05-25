@@ -13,3 +13,9 @@ This is repository of "Everything What I Know" Project.
 
 # Repository Structure
 
+# 정리 되어야 하는 목록
+* Probability
+* Computer engineering
+* Control
+* Numerical analysis
+
