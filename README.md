@@ -13,3 +13,17 @@ This is repository of "Everything What I Know" Project.
 
 # Repository Structure
 
+# 정리 되어야 하는 목록
+* Probability
+    * Evidential theory
+    * Bayesian network
+* Computer engineering
+* Control theory
+    * control
+    * observer
+        * stochastic filter(e.i. Kalman filter, etc)
+        * unknown input observer
+* Numerical analysis
+* Machine learning
+* Data science
+
