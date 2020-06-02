@@ -13,5 +13,13 @@
     <ClCompile Include="TestMain.c">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="TestMatrix.c">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestMatrix.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

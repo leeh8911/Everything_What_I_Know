@@ -142,6 +142,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="TestMain.c" />
+    <ClCompile Include="TestMatrix.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestMatrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

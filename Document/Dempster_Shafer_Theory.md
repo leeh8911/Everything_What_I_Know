@@ -36,7 +36,7 @@
 1. Classic Works of the Dempster-Shafer Theory of Belief Functions: An Introduction
    1. Introduction
       * (p1.)Belief functions에 대한 Dempster-Shafer이론은 Glenn Shafer의 세미나와 세미나의 컨셉적인 선행연구였던 "lower and upper probabilities, by Arthur P. Dempster"에 기인하였다.
-      *  
+      *  (p1.) Fuzzy logic과 확률적 의미를 연결함으로, belief functions에 대한 이론은 지식을 표현하고, 전문가 시스템 안에 불확실한 추론을 위해 중요한 도구가 되었다. 
 
 
 

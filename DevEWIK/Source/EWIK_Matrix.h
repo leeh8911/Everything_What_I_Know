@@ -1,18 +1,39 @@
-#pragma once
+#ifndef __EWIK_MATRIX_H__
+#define __EWIK_MATRIX_H__
 
-typedef struct Node* pNode;
-typedef struct tNode
+struct Node
 {
-	int row, col;
+	int row;
+	int col;
 	double value;
-	pNode next_row, next_col;
-}Node;
+	struct Node *next;
+};
 
-typedef struct tSparseMatrix
+struct Matrix
 {
+	int size;
 	int num_of_row, num_of_col;
-	pNode head;
-}SparseMatrix;
+	struct Node* head;
+};
+
+typedef struct Matrix tMatrix;
+typedef struct Node tNode;
 
 
-extern SparseMatrix CreateMatrix(void);
+extern tMatrix CreateMatrix(double* arr, int size_row, int size_col);
+extern void DeleteMatrix(tMatrix*);
+extern void PrintMatrix(tMatrix*);
+
+extern double GetValueFromMatrix(tMatrix* src, int row, int col);
+extern void SetValueInMatrix(tMatrix* des, int row, int col, double value);
+
+extern tMatrix AddMatrix(tMatrix* A, tMatrix* B);
+extern tMatrix MulMatrix(tMatrix* A, tMatrix* B);
+extern double DeterminantOfMatrix(tMatrix* A);
+extern tMatrix InverseMatrix(tMatrix* A);
+extern tMatrix TransposeMatrix(tMatrix* A);
+
+
+
+
+#endif
