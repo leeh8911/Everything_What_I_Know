@@ -7,7 +7,7 @@
 
 # Reference
 
-
+[1] C언어에서 클래스 구현하기[링크](http://blog.naver.com/PostView.nhn?blogId=ruvendix&logNo=220980152324&categoryNo=0&parentCategoryNo=0)
 
 
 # List of functions
