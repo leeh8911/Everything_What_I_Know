@@ -16,9 +16,15 @@
     <ClCompile Include="TestMatrix.c">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="TestEvidenceGrid.c">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TestMatrix.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEvidenceGrid.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

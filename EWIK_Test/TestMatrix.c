@@ -9,10 +9,22 @@ int test_matrix(void);
 
 int test_matrix(void)
 {
-	double arr[9] = { 1,2,3,4,5,6,7,8,9 };
+	return 1;
+}
 
-	printf("create 3X3 matrix!\n");
-	tMatrix mat = CreateMatrix(arr, 3, 3);
-	PrintMatrix(&mat);
+int create_test(void)
+{
+	matrix_t* A = CreateMatrix(3, 3);
+	double a[3][3] = { {1,2,3},{4,5,6},{4,3,2} };
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = 0; j < 3; ++j)
+		{
+			A->SetValue(A, i, j, a[i][j]);
+		}
+	}
 
+	A->Print(A);
+
+	return 1;
 }

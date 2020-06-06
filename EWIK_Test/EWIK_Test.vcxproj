@@ -94,6 +94,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>DevEWIK.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize>524288000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -141,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TestEvidenceGrid.c" />
     <ClCompile Include="TestMain.c" />
     <ClCompile Include="TestMatrix.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TestEvidenceGrid.h" />
     <ClInclude Include="TestMatrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
