@@ -52,6 +52,7 @@ typedef struct EvidenceGridMap
 }EGM;
 
 typedef Belief(*PropFunc)(Belief);
+typedef Belief(*FusionFunc)(Belief, Belief);
 
 EGM CreateEvidenceGridMap(int num_of_discernment, int args, ...);
 

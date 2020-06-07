@@ -190,3 +190,41 @@ EGM PropagateBeliefMass(EGM* map1, PropFunc func)
 
 	return result;
 }
+
+EGM PropagateBeliefMass(EGM* map1, PropFunc func)
+{
+	EGM result;
+	Belief M1, Mr;
+	memmove(&result, map1, sizeof(EGM));
+	memset(&result.map, 0, sizeof(Map));
+
+	unsigned int total_grid_size = result.size_lat_grids * result.size_long_grids;
+	int lat_index, long_index;
+	for (unsigned int index = 0; index < total_grid_size; ++index)
+	{
+		long_index = (int)(index / result.size_lat_grids);
+		lat_index = (int)(index % result.size_lat_grids);
+
+		M1 = map1->map.cells[long_index][lat_index];
+		result.map.cells[long_index][lat_index] = func(M1);
+	}
+
+	return result;
+}
+
+void FuseBeliefMass(EGM* map1, EGM* map2, EGM* des, FusionFunc func)
+{
+	Belief M1, M2, Mr;
+
+	unsigned int total_grid_size = des->size_lat_grids * des->size_long_grids;
+	int lat_index, long_index;
+	for (unsigned int index = 0; index < total_grid_size; ++index)
+	{
+		long_index = (int)(index / des->size_lat_grids);
+		lat_index = (int)(index % des->size_lat_grids);
+
+		M1 = map1->map.cells[long_index][lat_index];
+		M2 = map2->map.cells[long_index][lat_index];
+		des->map.cells[long_index][lat_index] = func(M1, M2);
+	}
+}
