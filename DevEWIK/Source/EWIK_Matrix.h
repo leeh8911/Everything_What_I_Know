@@ -1,39 +1,29 @@
 #ifndef __EWIK_MATRIX_H__
 #define __EWIK_MATRIX_H__
 
-struct Node
+#define MATRIX_MAX_SIZE_ROW (10)
+#define MATRIX_MAX_SIZE_COL (10)
+
+typedef struct matrix matrix_t;
+typedef struct matrix
 {
-	int row;
-	int col;
-	double value;
-	struct Node *next;
-};
+	// this ptr
+	matrix_t* this;
 
-struct Matrix
-{
-	int size;
-	int num_of_row, num_of_col;
-	struct Node* head;
-};
+	// member variables
+	int size_row;
+	int size_col;
+	double value[MATRIX_MAX_SIZE_ROW][MATRIX_MAX_SIZE_COL];
+	
+	void (*Print)(matrix_t* this);
+	int (*GetSizeRow)(matrix_t* this);
+	int (*GetSizeCol)(matrix_t* this);
 
-typedef struct Matrix tMatrix;
-typedef struct Node tNode;
+	int (*GetValue)(matrix_t* this, int row, int col);
+	int (*SetValue)(matrix_t* this, int row, int col, double value);
 
+}matrix_t;
 
-extern tMatrix CreateMatrix(double* arr, int size_row, int size_col);
-extern void DeleteMatrix(tMatrix*);
-extern void PrintMatrix(tMatrix*);
-
-extern double GetValueFromMatrix(tMatrix* src, int row, int col);
-extern void SetValueInMatrix(tMatrix* des, int row, int col, double value);
-
-extern tMatrix AddMatrix(tMatrix* A, tMatrix* B);
-extern tMatrix MulMatrix(tMatrix* A, tMatrix* B);
-extern double DeterminantOfMatrix(tMatrix* A);
-extern tMatrix InverseMatrix(tMatrix* A);
-extern tMatrix TransposeMatrix(tMatrix* A);
-
-
-
-
+matrix_t* CreateMatrix(int size_row, int size_col);
+void DeleteMatrix(matrix_t* src);
 #endif

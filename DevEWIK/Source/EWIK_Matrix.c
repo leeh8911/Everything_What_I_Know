@@ -4,166 +4,78 @@
 
 #include "EWIK_Matrix.h"
 
-// Declare global extern function
-tMatrix CreateMatrix(double* arr, int size_row, int size_col);
-void DeleteMatrix(tMatrix*);
-void PrintMatrix(tMatrix*);
+matrix_t* CreateMatrix(int size_row, int size_col);
+void DeleteMatrix(matrix_t* src);
 
-double GetValueFromMatrix(tMatrix* src, int row, int col);
-void SetValueInMatrix(tMatrix* des, int row, int col, double value);
+void Print_(matrix_t* this);
+int GetSizeRow_(matrix_t* this);
+int GetSizeCol_(matrix_t* this);
 
-tMatrix AddMatrix(tMatrix* A, tMatrix* B);
-tMatrix MulMatrix(tMatrix* A, tMatrix* B);
-double DeterminantOfMatrix(tMatrix* A);
-tMatrix InverseMatrix(tMatrix* A);
-tMatrix TransposeMatrix(tMatrix* A);
-
-// Declare local static function
-static tNode* CreateNode(double value, int row, int col, tNode* next);
+int GetValue_(matrix_t* this, int row, int col);
+void SetValue_(matrix_t* this, int row, int col, double value);
 
 
-//
 
-// Matrix_{ij} = arr[i*size_col+j]
-tMatrix CreateMatrix(double* arr, int size_row, int size_col)
+
+matrix_t* CreateMatrix(int size_row, int size_col)
 {
-	int i = 0, total_size = size_row * size_col;
-	int row, col;
-	tMatrix result;
-	tNode *temp = NULL;
-	result.head = NULL;
-	result.num_of_col = size_col;
-	result.num_of_row = size_row;
-	result.size = 0;
+	matrix_t* result = (matrix_t*)malloc(sizeof(matrix_t));
+	memset(result, 0, sizeof(matrix_t));
 
-	for (i = 0; i < total_size; i++)
-	{
-		row = i / size_col;
-		col = i % size_col;
-		if (arr[i] == 0)
-		{
-			continue;
-		}
-		if (result.head == NULL)
-		{
-			result.head = CreateNode(arr[i], row, col, NULL);
-			result.size++;
+	result->size_col = size_col;
+	result->size_row = size_row;
 
-			temp = result.head;
-		}
-		else
-		{
-			temp->next = CreateNode(arr[i], row, col, NULL);
-			result.size++;
+	//
+	result->this = result;
 
-			temp = temp->next;
-		}
-	}
+	result->Print = Print_;
 
+	result->GetSizeRow = GetSizeRow_;
+	result->GetSizeCol = GetSizeCol_;
+
+	result->GetValue = GetValue_;
+	result->SetValue = SetValue_;
 
 	return result;
 }
 
-
-tNode* CreateNode(double value, int row, int col, tNode* next)
+void DeleteMatrix(matrix_t* src)
 {
-	tNode* temp = (tNode*)malloc(sizeof(tNode));
-	memset(temp, 0, sizeof(tNode));
-
-	temp->row = row;
-	temp->col = col;
-	temp->value = value;
-	temp->next = next;
-
-	return temp;
+	free(src);
+	src = NULL;
 }
 
-
-void PrintMatrix(tMatrix* matrix)
+int GetSizeRow_(matrix_t* this)
 {
-	int size_row = matrix->num_of_row, size_col = matrix->num_of_col;
-	int size = matrix->size;
-	int i = 0, j = 0, row = 0, col = 0;
-	tNode* temp = matrix->head;
-	double** arr = (double**)malloc(sizeof(double*) * size_row);
-	for (i = 0; i < size_row; i++)
-	{
-		arr[i] = (double*)malloc(sizeof(double) * size_col);
-		memset(arr[i], 0, sizeof(double) * size_col);
-	}
-
-	for (i = 0; i < size; i++)
-	{
-		row = i / size_col;
-		col = i % size_col;
-
-		arr[row][col] = GetValueFromMatrix(matrix, row, col);
-	}
-
-	
-	for (i = 0; i < size_row; i++)
-	{
-		printf("| ");
-		for (j = 0; j < size_col; j++)
-		{
-			printf("%6.2f ", arr[i][j]);
-		}
-		printf("| \n");
-	}
+	return this->size_row;
+}
+int GetSizeCol_(matrix_t* this)
+{
+	return this->size_col;
 }
 
-
-double GetValueFromMatrix(tMatrix* src, int row, int col)
+int GetValue_(matrix_t* this, int row, int col)
 {
-	double result = 0;
-	int flag_get = 0;
-	tNode* temp = src->head;
-	while (temp != NULL && flag_get == 0)
-	{
-		if (temp->row == row && temp->col == col)
-		{
-			result = temp->value;
-			flag_get = 1;
-		}
-		else
-		{
-			temp = temp->next;
-		}
-	}
-
-	return result;
+	return this->value[row][col];
 }
-
-
-//TODO : List!
-
-void SetValueInMatrix(tMatrix* des, int row, int col, double value)
+void SetValue_(matrix_t* this, int row, int col, double value)
 {
-	tNode* curr = des->head;
-	tNode* temp = NULL;
-
-	int set_flag = 0;
-	while (curr != NULL && set_flag == 0)
+	this->value[row][col] = value;
+}
+void Print_(matrix_t* this)
+{
+	int size_row = this->GetSizeRow(this);
+	int size_col = this->GetSizeCol(this);
+	int i, j;
+	double value;
+	for (i = 0; i < size_row; ++i)
 	{
-		if (curr->row == row && curr->col == col)
+		printf("|");
+		for (j = 0; j < size_col; ++j)
 		{
-			curr->value = value;
-			set_flag = 1;
+			value = this->GetValue(this, i, j);
+			printf("%6.2f ", value);
 		}
-		else
-		{
-			curr = curr->next;
-		}
-	}
-
-	if(set_flag == 0)
-	{
-		curr->next = (tNode*)malloc(sizeof(tNode));
+		printf("|\n");
 	}
 }
-
-tMatrix AddMatrix(tMatrix* A, tMatrix* B) {}
-tMatrix MulMatrix(tMatrix* A, tMatrix* B) {}
-double DeterminantOfMatrix(tMatrix* A) {}
-tMatrix InverseMatrix(tMatrix* A){}
-tMatrix TransposeMatrix(tMatrix* A){}
